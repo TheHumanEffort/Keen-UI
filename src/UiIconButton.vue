@@ -1,7 +1,7 @@
 <template>
     <button
         class="ui-icon-button" :class="styleClasses" :aria-label="ariaLabel || tooltip"
-        :type="buttonType" v-disabled="disabled || loading" v-el:button
+        :type="buttonType" v-disabled="disabled || loading" ref:button
     >
         <ui-icon
             class="ui-icon-button-icon" :icon="icon" v-show="!loading"
@@ -12,22 +12,22 @@
             disable-transition v-show="loading"
         ></ui-progress-circular>
 
-        <ui-ripple-ink v-if="!hideRippleInk && !disabled" :trigger="$els.button"></ui-ripple-ink>
+        <ui-ripple-ink v-if="!hideRippleInk && !disabled" :trigger="$refs.button"></ui-ripple-ink>
 
         <ui-tooltip
-            :trigger="$els.button" :content="tooltip" :position="tooltipPosition" v-if="tooltip"
+            :trigger="$refs.button" :content="tooltip" :position="tooltipPosition" v-if="tooltip"
             :open-on="openTooltipOn"
         ></ui-tooltip>
 
         <ui-menu
-            class="ui-button-dropdown-menu" :trigger="$els.button" :options="menuOptions"
+            class="ui-button-dropdown-menu" :trigger="$refs.button" :options="menuOptions"
             :show-icons="showMenuIcons" :show-secondary-text="showMenuSecondaryText"
             :open-on="openDropdownOn" @option-selected="menuOptionSelect"
             :dropdown-position="dropdownPosition" v-if="hasDropdownMenu"
         ></ui-menu>
 
         <ui-popover
-            :trigger="$els.button" :open-on="openDropdownOn" :dropdown-position="dropdownPosition"
+            :trigger="$refs.button" :open-on="openDropdownOn" :dropdown-position="dropdownPosition"
             v-if="hasPopover"
         >
             <slot name="popover"></slot>

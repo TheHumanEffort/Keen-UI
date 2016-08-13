@@ -113,7 +113,7 @@ export default {
     props: {
         trigger: {
             type: Element,
-            required: true
+            required: false
         }
     },
 
